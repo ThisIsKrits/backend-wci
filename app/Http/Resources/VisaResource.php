@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class VisaResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     */
+    public function toArray($request)
+    {
+        return [
+            "id"            => $this->id,
+            "country"       => new CountryResource($this->country),
+            "type"          => VisaTypeResource::collection($this->whenLoaded("visaType")),
+            "regulation"    => VisaRegulationResource::collection($this->whenLoaded("visaRegulation")),
+        ];
+    }
+}
