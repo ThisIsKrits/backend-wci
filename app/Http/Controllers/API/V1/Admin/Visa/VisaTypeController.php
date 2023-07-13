@@ -77,6 +77,13 @@ class VisaTypeController extends Controller
     public function show($id)
     {
         //
+        $data = VisaType::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail visa type",
+            "data"      => new VisaTypeResource($data),
+        ], 200);
     }
 
     /**

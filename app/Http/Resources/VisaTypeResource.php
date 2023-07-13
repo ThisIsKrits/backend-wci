@@ -15,6 +15,8 @@ class VisaTypeResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"        => $this->id,
+            "visa_id"   => $this->visa_id,
             "name"      => $this->name
         ];
     }

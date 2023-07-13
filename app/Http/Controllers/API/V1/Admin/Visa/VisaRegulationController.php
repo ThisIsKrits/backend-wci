@@ -77,6 +77,13 @@ class VisaRegulationController extends Controller
     public function show($id)
     {
         //
+        $data = VisaRegulation::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail regulation",
+            "data"      => new VisaRegulationResource($data)
+        ], 200);
     }
 
     /**

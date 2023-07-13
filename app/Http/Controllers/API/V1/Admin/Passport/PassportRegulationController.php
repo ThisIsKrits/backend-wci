@@ -78,6 +78,13 @@ class PassportRegulationController extends Controller
     public function show($id)
     {
         //
+        $data = PassportRegulation::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail Regulation",
+            "data"      => new PassportRegulationResource($data),
+        ], 200);
     }
 
     /**

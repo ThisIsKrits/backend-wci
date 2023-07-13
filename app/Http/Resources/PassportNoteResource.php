@@ -15,7 +15,9 @@ class PassportNoteResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"        => $this->id,
             "note"      => $this->note,
+            "passport_id"   => $this->passport_id,
         ];
     }
 }

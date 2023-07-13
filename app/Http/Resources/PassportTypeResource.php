@@ -15,9 +15,9 @@ class PassportTypeResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "id"        => $this->id,
+            "id"            => $this->id,
             "passport_id"   => $this->passport_id,
-            "content"   => $this->content,
+            "content"       => $this->content,
         ];
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\Admin\AdultController;
 use App\Http\Controllers\API\V1\Admin\ClientController;
 use App\Http\Controllers\API\V1\Admin\PackageTour\BenefitController;
 use App\Http\Controllers\API\V1\Admin\PackageTour\DestinationPackageController;
@@ -78,7 +79,7 @@ Route::group(["prefix" => "v1"], function(){
         Route::resource("passports", PassportController::class);
         Route::resource("passport-types", PassportTypeController::class);
         Route::resource("passport-notes", PassportNoteController::class);
-        Route::resource("passport-regulation", PassportRegulationController::class);
+        Route::resource("passport-regulations", PassportRegulationController::class);
         Route::resource("visas", VisaController::class);
         Route::resource("visa-regulations", VisaRegulationController::class);
         Route::resource("visa-types", VisaTypeController::class);
@@ -86,6 +87,7 @@ Route::group(["prefix" => "v1"], function(){
 
 
     // Route guest
+    Route::resource("adults", AdultController::class);
     Route::resource('tour', GuestTourPackageController::class);
     Route::resource("travels", TravelController::class);
     Route::resource("country", CountryController::class);

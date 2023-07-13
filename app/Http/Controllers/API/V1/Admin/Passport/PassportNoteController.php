@@ -64,7 +64,7 @@ class PassportNoteController extends Controller
         return response()->json([
             "success"   => true,
             "message"   => "Passport note succesfully saved",
-            "data"      => new PassportNote($note)
+            "data"      => new PassportNoteResource($note)
         ], 201);
     }
 
@@ -77,6 +77,13 @@ class PassportNoteController extends Controller
     public function show($id)
     {
         //
+        $data = PassportNote::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail note",
+            "data"      => new PassportNoteResource($data)
+        ], 200);
     }
 
     /**
