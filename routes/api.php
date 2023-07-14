@@ -88,8 +88,8 @@ Route::group(["prefix" => "v1"], function(){
 
     // Route guest
     Route::resource("adults", AdultController::class);
-    Route::resource('tour', GuestTourPackageController::class);
-    Route::resource("travels", TravelController::class);
+    Route::get('tour', [TourPackageController::class, "index"]);
+    Route::get("travels", [TravelPackageController::class, "index"]);
     Route::resource("country", CountryController::class);
     Route::resource("partner", PartnerController::class);
     Route::resource("client", ClientController::class);

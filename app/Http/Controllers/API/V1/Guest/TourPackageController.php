@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\V1\Guest;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Guest\TourPackageResource;
+use App\Http\Resources\TourPackageResource;
 use App\Models\TourPackage;
 use Illuminate\Http\Request;
 
