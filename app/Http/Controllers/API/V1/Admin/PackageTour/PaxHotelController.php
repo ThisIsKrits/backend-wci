@@ -79,6 +79,13 @@ class PaxHotelController extends Controller
     public function show($id)
     {
         //
+        $data = PaxHotel::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail pax hotel",
+            "data"      => new PaxHotelResource($data)
+        ]);
     }
 
     /**

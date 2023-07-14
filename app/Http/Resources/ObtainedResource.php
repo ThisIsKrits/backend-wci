@@ -15,6 +15,8 @@ class ObtainedResource extends JsonResource
     public function toArray($request)
     {
         return[
+            'id'    => $this->id,
+            'journey_id'    => $this->journey_id,
             'name'  => $this->name,
         ];
     }

@@ -76,6 +76,13 @@ class ObtainedJourneyController extends Controller
     public function show($id)
     {
         //
+        $data = Obtained::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail Obtain",
+            "data"      => new ObtainedResource($data)
+        ]);
     }
 
     /**
@@ -114,7 +121,7 @@ class ObtainedJourneyController extends Controller
         $obtained->update([
             'journey_id'    => $request->journey_id,
             'name'          => $request->name,
-        ], 201);
+        ]);
 
         return response()->json([
             'success'   => true,

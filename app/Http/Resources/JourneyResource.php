@@ -15,8 +15,10 @@ class JourneyResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'            => $this->id,
+            'package'       => $this->tour_package_id,
             'day'           => $this->day,
-            'image'         => asset("storage/journies/".$this->image),
+            'image'         => asset("storage/journies/". $this->image),
             'desc'          => $this->desc,
         ];
     }

@@ -15,7 +15,8 @@ class BenefitResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'package'   => new TourPackageResource($this->tourPackage),
+            'id'        => $this->id,
+            'package'   => $this->tour_package_id,
             'content'   => $this->content,
         ];
     }

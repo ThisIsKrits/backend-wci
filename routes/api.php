@@ -57,11 +57,11 @@ Route::group(["prefix" => "v1"], function(){
     // route admin
     Route::group(["prefix" => "tour"], function(){
         Route::resource("partner", PartnerController::class);
-        Route::resource("tour", TourPackageController::class);
+        Route::resource("tour-packages", TourPackageController::class);
         // Route::resource("tour-image", )
         Route::resource("destination", DestinationPackageController::class);
         Route::resource("type-tour", TypeTourController::class);
-        Route::resource("journey", JourneyTourController::class);
+        Route::resource("journies", JourneyTourController::class);
         Route::resource("benefit-tour", BenefitController::class);
         Route::resource("obtained-tour", ObtainedJourneyController::class);
         Route::resource("hotel-tour", HotelTourController::class);

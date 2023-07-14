@@ -15,7 +15,8 @@ class HotelTourResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'package'   => new TourPackageResource($this->package),
+            'id'        => $this->id,
+            'package'   => $this->tour_package_id,
             'name'      => $this->name,
         ];
     }

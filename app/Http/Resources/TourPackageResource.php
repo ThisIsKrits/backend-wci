@@ -15,12 +15,13 @@ class TourPackageResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id'                => $this->id,
             'name'              => $this->name,
             'duration'          => $this->duration,
-            'destination_id'    => new DestinationPackageResource($this->destination),
-            'type_tour_id'      => new TourTypeResource($this->typeTour),
-            'price'             => "Rp.".$this->price,
-            'promo'             => "Rp.".$this->promo_price,
+            'destination'       => new DestinationPackageResource($this->destination),
+            'type'              => new TourTypeResource($this->typeTour),
+            'price'             => $this->price,
+            'promo'             => $this->promo_price,
             'desc'              => $this->desc,
             'image'             => asset("storage/tours/". $this->getImage->image),
         ];

@@ -77,6 +77,13 @@ class HotelTourController extends Controller
     public function show($id)
     {
         //
+        $data = HotelTour::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail hotel",
+            "data"      => new HotelTourResource($data)
+        ]);
     }
 
     /**

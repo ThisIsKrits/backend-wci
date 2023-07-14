@@ -65,6 +65,9 @@ class TourPackageController extends Controller
 
         // image upload
         if ($image = $request->file('image')) {
+            $fileNameWithExt   = $image->getClientOriginalName();
+            $fileName          = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $ext               = $image->getClientOriginalExtension();
             $fileNameSave      = Str::uuid();
             $image->storeAs('public/tours', $fileNameSave);
         }
@@ -100,6 +103,13 @@ class TourPackageController extends Controller
     public function show($id)
     {
         //
+        $data = TourPackage::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail package",
+            "data"      => new TourPackageResource($data)
+        ], 200);
     }
 
     /**
@@ -131,7 +141,7 @@ class TourPackageController extends Controller
             'price'             => 'required|numeric',
             'promo_price'       => 'nullable|numeric',
             'desc'              => 'nullable',
-            'image'             => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'image'             => 'nullable|max:2048'
         ]);
 
         // check validation fails
@@ -185,9 +195,11 @@ class TourPackageController extends Controller
     {
         $package = TourPackage::findOrFail($id);
 
+        Storage::delete('public/tours/'. $package->getImage->image);
+        $package->getImage()->delete();
+
         $package->delete();
 
-        Storage::delete('public/tours/'. $package->image->image);
 
         return response()->json([
             'success'   => true,

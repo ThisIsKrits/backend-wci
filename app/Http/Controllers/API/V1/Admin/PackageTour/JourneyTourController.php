@@ -49,7 +49,7 @@ class JourneyTourController extends Controller
          $validator = Validator::make($request->all(), [
             'tour_package_id'   => 'required',
             'day'               => 'required|numeric',
-            'image'             => 'nullable|image|mimes:jpg,jpeg,png|max:1028',
+            'image'             => 'required|image|mimes:jpg,jpeg,png|max:1028',
             'desc'              => 'nullable',
         ]);
 
@@ -88,6 +88,13 @@ class JourneyTourController extends Controller
     public function show($id)
     {
         //
+        $data = Journey::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail journey",
+            "data"      => new JourneyResource($data)
+        ], 200);
     }
 
     /**
@@ -114,7 +121,7 @@ class JourneyTourController extends Controller
          $validator = Validator::make($request->all(), [
             'tour_package_id'   => 'required',
             'day'               => 'required|numeric',
-            'image'             => 'nullable|image|mimes:jpg,jpeg,png|max:1028',
+            'image'             => 'nullable|max:1028',
             'desc'              => 'nullable',
         ]);
 

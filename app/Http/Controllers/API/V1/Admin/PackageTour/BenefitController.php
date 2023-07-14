@@ -76,6 +76,13 @@ class BenefitController extends Controller
     public function show($id)
     {
         //
+        $data = Benefit::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail benefit",
+            "data"      => new BenefitResource($data)
+        ]);
     }
 
     /**

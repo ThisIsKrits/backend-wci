@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1\Admin\PackageTour;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DestinationPackageResource;
+use App\Http\Resources\DestinationResource;
 use App\Models\DestinationPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -77,6 +78,13 @@ class DestinationPackageController extends Controller
     public function show($id)
     {
         //
+        $data = DestinationPackage::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail Destination",
+            "data"      => new DestinationResource($data)
+        ], 200);
     }
 
     /**

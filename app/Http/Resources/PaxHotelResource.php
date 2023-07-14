@@ -15,9 +15,10 @@ class PaxHotelResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'hotel'     => new HotelTourResource($this->hotel),
+            'id'        => $this->id,
+            'hotel'     =>  $this->hotel_id,
             'pax'       => $this->pax,
-            'price'     => "Rp." . $this->price,
+            'price'     => $this->price,
         ];
     }
 }

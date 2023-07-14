@@ -84,6 +84,13 @@ class ClientController extends Controller
     public function show($id)
     {
         //
+        $data = Client::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail client",
+            "data"      => new ClientResource($data)
+        ], 200);
     }
 
     /**
@@ -109,7 +116,7 @@ class ClientController extends Controller
          // validation rules
          $validator = Validator::make($request->all(),[
             "name"      => "required",
-            "image"     => "required|image|mimes:jpg,jpeg,png|max:1028"
+            "image"     => "nullable|max:1028"
         ]);
 
         // check validator fails
