@@ -51,52 +51,55 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(["prefix" => "v1"], function(){
 
+
+
     // admin route
-    Route::group(["prefix" => "admin", "auth:sanctum"], function(){
+    Route::group(["prefix" => "admin"], function(){
         Route::post("login", [AuthController::class, "login"]);
         Route::post("logout", [AuthController::class, "logout"]);
+        Route::middleware(["auth:sanctum"])->group(function (){
+        Route::resource("client", ClientController::class);
 
-    });
-    // route admin
-    Route::group(["prefix" => "tour"], function(){
-        Route::resource("partner", PartnerController::class);
-        Route::resource("tour-packages", TourPackageController::class);
-        Route::resource("destination", DestinationPackageController::class);
-        Route::resource("type-tour", TypeTourController::class);
-        Route::resource("journies", JourneyTourController::class);
-        Route::resource("benefit-tour", BenefitController::class);
-        Route::resource("obtained-tour", ObtainedJourneyController::class);
-        Route::resource("hotel-tour", HotelTourController::class);
-        Route::resource("pax-hotel", PaxHotelController::class);
-    });
+            // route admin
+            Route::group(["prefix" => "tour"], function(){
+            Route::resource("partner", PartnerController::class);
+            Route::resource("tour-packages", TourPackageController::class);
+            Route::resource("destination", DestinationPackageController::class);
+            Route::resource("type-tour", TypeTourController::class);
+            Route::resource("journies", JourneyTourController::class);
+            Route::resource("benefit-tour", BenefitController::class);
+            Route::resource("obtained-tour", ObtainedJourneyController::class);
+            Route::resource("hotel-tour", HotelTourController::class);
+            Route::resource("pax-hotel", PaxHotelController::class);
+            });
 
-    Route::group(["prefix" => "travel"], function(){
-        Route::resource("destinations", TravelDestinationController::class);
-        Route::resource("packages", TravelPackageController::class);
-        Route::resource("package-prices", TypeTicketController::class);
-        Route::resource("info-travel", InfoTravelController::class);
-    });
+            Route::group(["prefix" => "travel"], function(){
+                Route::resource("destinations", TravelDestinationController::class);
+                Route::resource("packages", TravelPackageController::class);
+                Route::resource("package-prices", TypeTicketController::class);
+                Route::resource("info-travel", InfoTravelController::class);
+            });
 
-    Route::group(["prefix" => "document"], function(){
-        Route::resource("passports", PassportController::class);
-        Route::resource("passport-types", PassportTypeController::class);
-        Route::resource("passport-notes", PassportNoteController::class);
-        Route::resource("passport-regulations", PassportRegulationController::class);
-        Route::resource("visas", VisaController::class);
-        Route::resource("visa-regulations", VisaRegulationController::class);
-        Route::resource("visa-types", VisaTypeController::class);
+            Route::group(["prefix" => "document"], function(){
+                Route::resource("passports", PassportController::class);
+                Route::resource("passport-types", PassportTypeController::class);
+                Route::resource("passport-notes", PassportNoteController::class);
+                Route::resource("passport-regulations", PassportRegulationController::class);
+                Route::resource("visas", VisaController::class);
+                Route::resource("visa-regulations", VisaRegulationController::class);
+                Route::resource("visa-types", VisaTypeController::class);
+            });
     });
+});
 
 
     // Route guest
     Route::resource("adults", AdultController::class);
     Route::resource('tour', GuestTourPackageController::class);
-    Route::get('tour-packages/{id}', [TourPackageController::class, "show"]);
+    // Route::get('tour-packages/{id}', [TourPackageController::class, "show"]);
     Route::resource("travels", TravelController::class);
     Route::resource("country", CountryController::class);
     Route::resource("partner", PartnerController::class);
     Route::resource("client", ClientController::class);
-    Route::resource("visa", GuestVisaController::class);
-    Route::resource("passport", GuestPassportController::class);
     Route::resource("document", DocumentController::class);
 });
