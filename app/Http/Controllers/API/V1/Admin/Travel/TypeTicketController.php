@@ -60,7 +60,7 @@ class TypeTicketController extends Controller
         $type = TicketType::create([
             "adult_id"          => $request->adult_id,
             "normal_price"      => $request->normal_price,
-            "promo_price"       => $request->promo_price ?? 0,
+            "promo_price"       => $request->promo_price ?? "0",
             "travel_package_id" => $request->travel_package_id,
         ]);
 
@@ -80,6 +80,13 @@ class TypeTicketController extends Controller
     public function show($id)
     {
         //
+        $data = TicketType::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail package price",
+            "data"      => new TicketTypesResource($data)
+        ]);
     }
 
     /**

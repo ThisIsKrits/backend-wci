@@ -15,9 +15,11 @@ class TicketTypesResource extends JsonResource
     public function toArray($request)
     {
         return [
-            "adult"             => $this->adult->name,
+            "id"                => $this->id,
+            "adult"             => new AdultResource($this->adult),
             "normal_price"      => $this->normal_price,
             "promo_price"       => $this->promo_price,
+            "travel"            => new TravelPackageResource($this->TravelPackage),
         ];
     }
 }

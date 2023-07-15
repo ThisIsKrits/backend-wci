@@ -49,7 +49,7 @@ class JourneyTourController extends Controller
          $validator = Validator::make($request->all(), [
             'tour_package_id'   => 'required',
             'day'               => 'required|numeric',
-            'image'             => 'required|image|mimes:jpg,jpeg,png|max:1028',
+            'image'             => 'nullable|image|mimes:jpg,jpeg,png|max:1028',
             'desc'              => 'nullable',
         ]);
 
@@ -68,7 +68,7 @@ class JourneyTourController extends Controller
         $journey = Journey::create([
             'tour_package_id'       => $request->tour_package_id,
             'day'                   => $request->day,
-            'image'                 => $fileNameSave,
+            'image'                 => $fileNameSave ?? "",
             'desc'                  => $request->desc ?? "",
         ], 201);
 

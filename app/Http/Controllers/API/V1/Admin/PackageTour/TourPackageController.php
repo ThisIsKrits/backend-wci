@@ -51,7 +51,7 @@ class TourPackageController extends Controller
             'duration'          => 'nullable',
             'destination_id'    => 'required',
             'type_tour_id'      => 'required',
-            'price'             => 'required|numeric',
+            'price'             => 'nullable|numeric',
             'promo_price'       => 'nullable|numeric',
             'desc'              => 'nullable',
             'image'             => 'required|image|mimes:jpg,jpeg,png|max:2048'
@@ -138,7 +138,7 @@ class TourPackageController extends Controller
             'duration'          => 'nullable',
             'destination_id'    => 'required',
             'type_tour_id'      => 'required',
-            'price'             => 'required|numeric',
+            'price'             => 'nullable|numeric',
             'promo_price'       => 'nullable|numeric',
             'desc'              => 'nullable',
             'image'             => 'nullable|max:2048'

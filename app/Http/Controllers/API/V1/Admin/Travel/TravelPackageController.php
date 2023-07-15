@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\API\V1\Admin\Travel;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TourPackageResource;
 use App\Http\Resources\TravelPackageResource;
+use App\Models\TourPackage;
 use App\Models\TravelPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -81,6 +83,13 @@ class TravelPackageController extends Controller
     public function show($id)
     {
         //
+        $data = TravelPackage::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail tiket holiday",
+            "data"      => new TravelPackageResource($data)
+        ]);
     }
 
     /**

@@ -15,6 +15,8 @@ class InfoTravelResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"        => $this->id,
+            "travel_id"    => $this->travel_destination_id,
             "content"   => $this->content,
         ];
     }

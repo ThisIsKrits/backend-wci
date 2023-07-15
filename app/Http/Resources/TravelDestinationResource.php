@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use DateTime;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TravelDestinationResource extends JsonResource
@@ -15,12 +16,13 @@ class TravelDestinationResource extends JsonResource
     public function toArray($request)
     {
         return [
+            "id"            => $this->id,
             "name"          => $this->name,
-            "open"          => $this->open,
-            "close"         => $this->close,
+            "open"          => (new DateTime($this->open))->format('H:i'),
+            "close"         => (new DateTime($this->close))->format('H:i'),
             "type_ticket"   => $this->type_ticket,
             "type_tour"     => new TourTypeResource($this->typeTour),
-            "destination"   => new DestinationPackageResource($this->destination),
+            "destination"   => new DestinationResource($this->destination),
             "image"         => asset("storage/travels/".$this->getImage->image)
         ];
     }

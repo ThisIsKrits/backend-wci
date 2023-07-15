@@ -80,7 +80,8 @@ class TravelDestinationController extends Controller
         ]);
 
         $travel->getImage()->create([
-            "image"         => $fileNameSave,
+            // "travel_destination_id" => $travel->id,
+            "image"                 => $fileNameSave,
         ]);
 
         return response()->json([
@@ -99,6 +100,13 @@ class TravelDestinationController extends Controller
     public function show($id)
     {
         //
+        $data = TravelDestination::findOrFail($id);
+
+        return response()->json([
+            "success"   => true,
+            "message"   => "Detail travel destination",
+            "data"      => new TravelDestinationResource($data)
+        ]);
     }
 
     /**

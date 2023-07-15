@@ -18,11 +18,11 @@ class TicketType extends Model
 
     public function TravelPackage() :BelongsTo
     {
-        return $this->belongsTo(TravelPackage::class);
+        return $this->belongsTo(TravelPackage::class, "travel_package_id", "id");
     }
 
     public function adult() :BelongsTo
     {
-        return $this->belongsTo(Adult::class);
+        return $this->belongsTo(Adult::class, "adult_id", "id");
     }
 }

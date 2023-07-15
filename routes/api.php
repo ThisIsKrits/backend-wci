@@ -69,9 +69,9 @@ Route::group(["prefix" => "v1"], function(){
     });
 
     Route::group(["prefix" => "travel"], function(){
-        Route::resource("travels", TravelDestinationController::class);
-        Route::resource("travel-package", TravelPackageController::class);
-        Route::resource("travel-ticket", TypeTicketController::class);
+        Route::resource("destinations", TravelDestinationController::class);
+        Route::resource("packages", TravelPackageController::class);
+        Route::resource("package-prices", TypeTicketController::class);
         Route::resource("info-travel", InfoTravelController::class);
     });
 

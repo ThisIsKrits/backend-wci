@@ -57,7 +57,7 @@ class InfoTravelController extends Controller
 
         $info = InfoTravel::create([
             "travel_destination_id"     => $request->travel_destination_id,
-            "content"       => $request->content ?? "",
+            "content"                   => $request->content ?? "",
         ]);
 
         return response()->json([
@@ -76,6 +76,13 @@ class InfoTravelController extends Controller
     public function show($id)
     {
         //
+        $data = InfoTravel::findOrFail($id);
+
+        return response()->json([
+            "success"  => true,
+            "message"   => "Detail info travel",
+            "data"      => new InfoTravelResource($data)
+        ]);
     }
 
     /**
