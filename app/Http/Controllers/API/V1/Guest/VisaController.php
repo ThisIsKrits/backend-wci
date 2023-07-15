@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\API\V1\Guest;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TravelDestinationResource;
-use App\Models\TravelDestination;
 use Illuminate\Http\Request;
 
-class TravelController extends Controller
+class VisaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +14,7 @@ class TravelController extends Controller
      */
     public function index()
     {
-        $travels = TravelDestination::orderBy("name", "ASC")->get();
-
-        return TravelDestinationResource::collection($travels)->additional([
-            "success"   => true,
-            "message"   => "List Travel Package"
-        ], 200);
+        //
     }
 
     /**
@@ -53,13 +46,7 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        $travel = TravelDestination::with("destination", "getImage", "travelPackage", "infoTravel", "typeTour")->findOrFail($id);
-
-        return response()->json([
-            "success"   => true,
-            "message"   => "Detail Travel",
-            "data"      => $travel
-        ], 200);
+        //
     }
 
     /**

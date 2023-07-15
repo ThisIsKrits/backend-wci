@@ -24,8 +24,11 @@ use App\Http\Controllers\API\V1\Admin\Visa\VisaRegulationController;
 use App\Http\Controllers\API\V1\Admin\Visa\VisaTypeController;
 use App\Http\Controllers\API\V1\AuthController;
 use App\Http\Controllers\API\V1\CountryController;
+use App\Http\Controllers\API\V1\Guest\DocumentController;
+use App\Http\Controllers\API\V1\Guest\PassportController as GuestPassportController;
 use App\Http\Controllers\API\V1\Guest\TourPackageController as GuestTourPackageController;
 use App\Http\Controllers\API\V1\Guest\TravelController;
+use App\Http\Controllers\API\V1\Guest\VisaController as GuestVisaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -58,7 +61,6 @@ Route::group(["prefix" => "v1"], function(){
     Route::group(["prefix" => "tour"], function(){
         Route::resource("partner", PartnerController::class);
         Route::resource("tour-packages", TourPackageController::class);
-        // Route::resource("tour-image", )
         Route::resource("destination", DestinationPackageController::class);
         Route::resource("type-tour", TypeTourController::class);
         Route::resource("journies", JourneyTourController::class);
@@ -88,10 +90,13 @@ Route::group(["prefix" => "v1"], function(){
 
     // Route guest
     Route::resource("adults", AdultController::class);
-    Route::get('tour', [TourPackageController::class, "index"]);
-    Route::get("travels", [TravelPackageController::class, "index"]);
+    Route::resource('tour', GuestTourPackageController::class);
+    Route::get('tour-packages/{id}', [TourPackageController::class, "show"]);
+    Route::resource("travels", TravelController::class);
     Route::resource("country", CountryController::class);
     Route::resource("partner", PartnerController::class);
     Route::resource("client", ClientController::class);
-    Route::resource("visa-passport", VisaPassportController::class);
+    Route::resource("visa", GuestVisaController::class);
+    Route::resource("passport", GuestPassportController::class);
+    Route::resource("document", DocumentController::class);
 });

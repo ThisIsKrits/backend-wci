@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API\V1\Guest;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\TravelDestinationResource;
-use App\Models\TravelDestination;
+use App\Http\Resources\CountryResource;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
-class TravelController extends Controller
+class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,12 +16,13 @@ class TravelController extends Controller
      */
     public function index()
     {
-        $travels = TravelDestination::orderBy("name", "ASC")->get();
+        //
+        $data = Country::orderBy("name","ASC")->get();
 
-        return TravelDestinationResource::collection($travels)->additional([
+        return CountryResource::collection($data)->additional([
             "success"   => true,
-            "message"   => "List Travel Package"
-        ], 200);
+            "message"   => "List country document",
+        ]);
     }
 
     /**
@@ -53,13 +54,14 @@ class TravelController extends Controller
      */
     public function show($id)
     {
-        $travel = TravelDestination::with("destination", "getImage", "travelPackage", "infoTravel", "typeTour")->findOrFail($id);
+        //
+        $data = Country::with("visa.visaType", "visa.visaRegulation","passport.typePassport", "passport.regulation", "passport.passportNote")->findOrFail($id);
 
         return response()->json([
             "success"   => true,
-            "message"   => "Detail Travel",
-            "data"      => $travel
-        ], 200);
+            "message"   => "Detail document",
+            "data"      => $data
+        ]);
     }
 
     /**

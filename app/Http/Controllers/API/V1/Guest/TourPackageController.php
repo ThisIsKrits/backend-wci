@@ -53,12 +53,12 @@ class TourPackageController extends Controller
      */
     public function show($id)
     {
-        $tour = TourPackage::findOrFail($id);
+        $tour = TourPackage::with("getImage", "typeTour", "destination", "journey", "journey.obtained", "hotel", "hotel.price", "benefit")->findOrFail($id);
 
         return response()->json([
             'success'   => true,
             'message'   => 'Detail Tour package',
-            'data'      => new TourPackageResource($tour)
+            'data'      => $tour
         ], 200);
     }
 
