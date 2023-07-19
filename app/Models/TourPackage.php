@@ -33,9 +33,9 @@ class TourPackage extends Model
         return $this->hasOne(ImagePackage::class, 'tour_package_id', 'id');
     }
 
-    public function journey() :HasOne
+    public function journey() :HasMany
     {
-        return $this->hasOne(Journey::class);
+        return $this->hasMany(Journey::class);
     }
 
     public function hotel() :HasMany
