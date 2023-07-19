@@ -46,7 +46,7 @@ class ObtainedJourneyController extends Controller
         // validation rules
         $validator = Validator::make($request->all(),[
             'journey_id'    => 'required',
-            'name'          => 'required|unique:obtaineds'
+            'name'          => 'required'
         ]);
 
         // check validator fails
@@ -108,7 +108,7 @@ class ObtainedJourneyController extends Controller
          // validation rules
          $validator = Validator::make($request->all(),[
             'journey_id'    => 'required',
-            'name'          => 'required|unique:obtaineds'
+            'name'          => 'required'
         ]);
 
         // check validator fails
