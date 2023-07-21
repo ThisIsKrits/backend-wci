@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\V1\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Guest\DetailTourPackageResource;
 use App\Http\Resources\TourPackageResource;
 use App\Models\TourPackage;
 use Illuminate\Http\Request;
@@ -53,12 +54,12 @@ class TourPackageController extends Controller
      */
     public function show($id)
     {
-        $tour = TourPackage::with("getImage", "typeTour", "destination", "journey", "journey.obtained", "hotel", "hotel.price", "benefit")->findOrFail($id);
+        $tour = TourPackage::findOrFail($id);
 
         return response()->json([
             'success'   => true,
             'message'   => 'Detail Tour package',
-            'data'      => $tour
+            'data'      => new DetailTourPackageResource($tour)
         ], 200);
     }
 
