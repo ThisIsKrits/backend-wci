@@ -60,10 +60,10 @@ Route::group(["prefix" => "v1"], function(){
         Route::middleware(["auth:sanctum"])->group(function (){
         Route::resource("client", ClientController::class);
         Route::resource("adults", AdultController::class);
+        Route::resource("partner", PartnerController::class);
 
             // route admin
             Route::group(["prefix" => "tour"], function(){
-            Route::resource("partner", PartnerController::class);
             Route::resource("tour-packages", TourPackageController::class);
             Route::resource("destination", DestinationPackageController::class);
             Route::resource("type-tour", TypeTourController::class);

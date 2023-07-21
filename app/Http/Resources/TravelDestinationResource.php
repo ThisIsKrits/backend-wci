@@ -23,7 +23,7 @@ class TravelDestinationResource extends JsonResource
             "type_ticket"   => $this->type_ticket,
             "type_tour"     => new TourTypeResource($this->typeTour),
             "destination"   => new DestinationResource($this->destination),
-            // "image"         => asset("storage/travels/".$this->getImage->image) ?? ""
+            "image"         => asset("storage/travels/".$this->getImage->image) ?? ""
         ];
     }
 }
