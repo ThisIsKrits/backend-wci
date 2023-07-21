@@ -172,7 +172,7 @@ class TravelDestinationController extends Controller
         ]);
 
         // update image
-        $travel->getImage->update([
+        $travel->getImage()->update([
             'travel_id'         => $travel->id,
             'image'             => $fileNameSave ?? $travel->getImage->image ?? " ",
         ]);
