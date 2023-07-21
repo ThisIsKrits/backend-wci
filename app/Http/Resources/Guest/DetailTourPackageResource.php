@@ -4,8 +4,10 @@ namespace App\Http\Resources\Guest;
 
 use App\Http\Resources\BenefitResource;
 use App\Http\Resources\DestinationResource;
+use App\Http\Resources\HotelTourResource;
 use App\Http\Resources\JourneyResource;
 use App\Http\Resources\TourTypeResource;
+use App\Models\HotelTour;
 use App\Models\Journey;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -19,7 +21,8 @@ class DetailTourPackageResource extends JsonResource
      */
     public function toArray($request)
     {
-        $journey = Journey::with('obtained')->findOrFail('tour_package_id', '=', $this->id);
+        $journey    = Journey::with('obtained')->where('tour_package_id', '=', $this->id)->get();
+        $hotel      = HotelTour::with('price')->where('tour_package_id', '=', $this->id)->get();
 
         return [
             'id'                => $this->id,
@@ -31,7 +34,8 @@ class DetailTourPackageResource extends JsonResource
             'promo'             => $this->promo_price,
             'desc'              => $this->desc,
             'image'             => asset("storage/tours/". $this->getImage->image),
-            'journey'           => JourneyResource::collection($this->journey)
+            'journey'           => JourneyResource::collection($journey),
+            'hotel'             => HotelTourResource::collection($hotel),
         ];
     }
 }
