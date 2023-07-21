@@ -6,6 +6,7 @@ use App\Http\Resources\BenefitResource;
 use App\Http\Resources\DestinationResource;
 use App\Http\Resources\JourneyResource;
 use App\Http\Resources\TourTypeResource;
+use App\Models\Journey;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DetailTourPackageResource extends JsonResource
@@ -18,6 +19,8 @@ class DetailTourPackageResource extends JsonResource
      */
     public function toArray($request)
     {
+        $journey = Journey::with('obtained')->findOrFail('tour_package_id', '=', $this->id);
+
         return [
             'id'                => $this->id,
             'name'              => $this->name,
