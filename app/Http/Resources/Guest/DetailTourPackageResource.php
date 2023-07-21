@@ -34,8 +34,8 @@ class DetailTourPackageResource extends JsonResource
             'promo'             => $this->promo_price,
             'desc'              => $this->desc,
             'image'             => asset("storage/tours/". $this->getImage->image),
-            'journey'           => JourneyResource::collection($journey),
-            'hotel'             => HotelTourResource::collection($hotel),
+            'journey'           => $journey,
+            'hotel'             => $hotel,
         ];
     }
 }
