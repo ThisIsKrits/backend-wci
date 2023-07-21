@@ -59,6 +59,7 @@ Route::group(["prefix" => "v1"], function(){
         Route::post("logout", [AuthController::class, "logout"]);
         Route::middleware(["auth:sanctum"])->group(function (){
         Route::resource("client", ClientController::class);
+        Route::resource("adults", AdultController::class);
 
             // route admin
             Route::group(["prefix" => "tour"], function(){
