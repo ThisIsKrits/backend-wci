@@ -195,7 +195,7 @@ class TravelDestinationController extends Controller
     {
         $travel = TravelDestination::findOrFail($id);
 
-        $travel->delele();
+        $travel->delete();
 
         Storage::delete('public/travels/'. $travel->getImage->image);
 
