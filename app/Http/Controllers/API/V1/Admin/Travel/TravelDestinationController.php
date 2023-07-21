@@ -55,6 +55,7 @@ class TravelDestinationController extends Controller
             "desc"          => "nullable",
             "destination_id"    => "required",
             "type_tour_id"      => "required",
+            "image"             => "nullable|image|mimes:jpg,jpeg,png,webp|max:1028"
         ]);
 
         // check validator fails
@@ -81,7 +82,7 @@ class TravelDestinationController extends Controller
 
         $travel->getImage()->create([
             // "travel_destination_id" => $travel->id,
-            "image"                 => $fileNameSave,
+            "image"                 => $fileNameSave ?? "",
         ]);
 
         return response()->json([
@@ -173,7 +174,7 @@ class TravelDestinationController extends Controller
         // update image
         $travel->getImage->update([
             'travel_id'         => $travel->id,
-            'image'             => $fileNameSave ?? $travel->getImage->image,
+            'image'             => $fileNameSave ?? $travel->getImage->image ?? " ",
         ]);
 
 
