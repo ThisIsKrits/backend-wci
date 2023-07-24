@@ -17,8 +17,6 @@ class VisaResource extends JsonResource
         return [
             "id"            => $this->id,
             "country"       => new CountryResource($this->country),
-            "type"          => VisaTypeResource::collection($this->whenLoaded("visaType")),
-            "regulation"    => VisaRegulationResource::collection($this->whenLoaded("visaRegulation")),
         ];
     }
 }

@@ -16,6 +16,7 @@ class PassportRegulationResource extends JsonResource
     {
         return [
             "id"            => $this->id,
+            "passport_id"   => $this->passport_id,
             "adult"         => new AdultResource($this->adult),
             "content"       => $this->content,
         ];
