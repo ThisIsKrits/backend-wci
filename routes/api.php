@@ -104,7 +104,7 @@ Route::group(["prefix" => "v1"], function(){
     // Route::get('tour-packages/{id}', [TourPackageController::class, "show"]);
     Route::resource("travels", TravelController::class);
     Route::resource("country", CountryController::class);
-    Route::resource("partner", PartnerController::class);
+    Route::get("partner", [PartnerController::class, "index"]);
     Route::resource("client", ClientController::class);
     Route::resource("document", DocumentController::class);
 });
