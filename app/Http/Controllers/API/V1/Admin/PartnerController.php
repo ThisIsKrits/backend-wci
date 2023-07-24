@@ -67,7 +67,11 @@ class PartnerController extends Controller
         ]);
 
         // return to response
-        return new PartnerResource(true, 'Partner data successfully saved', $partner);
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Create data partner success',
+            'data'      => $partner
+        ], 201);
 
     }
 
@@ -121,11 +125,11 @@ class PartnerController extends Controller
         if($request->hasFile('image') && $request->file('image') != null)
         {
             if($request->hasFile('image')){
-                Storage::delete('public/partner/'. $partner->image);
+                Storage::delete('public/partners/'. $partner->image);
             }
 
             $fileNameSave      = Str::uuid();
-            $request->file('image')->storeAs('public/journies', $fileNameSave);
+            $request->file('image')->storeAs('public/partners', $fileNameSave);
         }
 
         // update partner
@@ -134,7 +138,11 @@ class PartnerController extends Controller
             'image'     => $fileNameSave ?? $partner->image,
         ]);
 
-        return new PartnerResource(true, 'Partner data successfully changed', $partner);
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Update data partner success',
+            'data'      => $partner
+        ], 201);
     }
 
     /**
@@ -154,6 +162,9 @@ class PartnerController extends Controller
         // delete image partner
         Storage::delete('public/partners/', $partner->image);
 
-        return new PartnerResource(true,'Partner data deleted successfully', null);
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Delete data partner success',
+        ], 200);
     }
 }
