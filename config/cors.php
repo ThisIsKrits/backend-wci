@@ -15,10 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', '*'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie',],
 
     'allowed_methods' => ['*', 'http://127.0.0.1:5173',
-    'localhost:5173', 'https://wahanacaritiket-demo.vercel.app/', 'https://wahanacaritiket.com/', 'https://admin.wahanacaritiket.com/'],
+    'localhost:5173', 'https://wahanacaritiket-demo.vercel.app/',
+    'https://admin.wahanacaritiket.com/', 'https://wahanacaritiket.com/',],
 
     'allowed_origins' => ['*'],
 
