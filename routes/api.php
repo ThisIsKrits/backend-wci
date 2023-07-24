@@ -61,6 +61,7 @@ Route::group(["prefix" => "v1"], function(){
         Route::resource("client", ClientController::class);
         Route::resource("adults", AdultController::class);
         Route::resource("partner", PartnerController::class);
+        Route::resource("country", CountryController::class);
         Route::get('/user', function (Request $request) {
             return $request->user();
         });
