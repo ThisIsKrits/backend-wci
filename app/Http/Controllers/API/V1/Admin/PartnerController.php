@@ -84,6 +84,13 @@ class PartnerController extends Controller
     public function show($id)
     {
         //
+        $data = Partner::findOrFail($id);
+
+        return response()->json([
+            'success'   => true,
+            'message'   => 'Detail partner',
+            'data'      => $data
+        ]);
     }
 
     /**
@@ -135,7 +142,7 @@ class PartnerController extends Controller
         // update partner
         $partner->update([
             'name'      => $request->name,
-            'image'     => $fileNameSave ?? $partner->image,
+            'image'     => $partner->image ?? $fileNameSave,
         ]);
 
         return response()->json([
